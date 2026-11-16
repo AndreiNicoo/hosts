@@ -1,5 +1,17 @@
 #!/bin/bash
-fisier="$HOME/etc/hosts"
+# Verifica adresele IP dintr-un fisier hosts primit ca parametru
+
+if [ $# -ne 1 ]; then
+    echo "Utilizare: $0 fisier_hosts"
+    exit 1
+fi
+
+if [ ! -f "$1" ]; then
+    echo "Eroare: fisierul $1 nu exista"
+    exit 1
+fi
+
+fisier="$1"
 
 while read -r ip rest; do
     # sarim peste liniile goale si peste comentarii
